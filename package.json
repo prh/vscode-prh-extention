@@ -1,91 +1,91 @@
 {
-  "name": "vscode-prh-extention",
-  "displayName": "vscode-prh-extention",
-  "description": "work with [prh-languageserver](https://github.com/prh/prh-languageserver).",
-  "version": "0.0.1",
-  "publisher": "vvakame",
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/prh/vscode-prh-extention.git"
-  },
-  "author": "vvakame",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/prh/vscode-prh-extention/issues"
-  },
-  "homepage": "https://github.com/prh/vscode-prh-extention#readme",
-  "engines": {
-    "node": "^4.0.0",
-    "vscode": "^1.11.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:prh.quickFix",
-    "onCommand:prh.openDebugConsole",
-    "onLanguage:plaintext",
-    "onLanguage:markdown",
-    "onLanguage:review"
-  ],
-  "main": "./out/src/extension",
-  "contributes": {
-    "commands": [
-      {
-        "command": "prh.applyAllQuickFixes",
-        "title": "prh: Apply All Quick Fixes"
-      },
-      {
-        "command": "prh.openOutputChannel",
-        "title": "prh: Open Language Server Output"
-      }
+    "name": "vscode-prh-extention",
+    "displayName": "prh - ProofReadingHelper",
+    "description": "work with [prh-languageserver](https://github.com/prh/prh-languageserver).",
+    "version": "0.1.0",
+    "publisher": "vvakame",
+    "directories": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/prh/vscode-prh-extention.git"
+    },
+    "author": "vvakame",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/prh/vscode-prh-extention/issues"
+    },
+    "homepage": "https://github.com/prh/vscode-prh-extention#readme",
+    "engines": {
+        "node": "^4.0.0",
+        "vscode": "^1.11.0"
+    },
+    "categories": [
+        "Other"
     ],
-    "configuration": {
-      "type": "object",
-      "title": "Example configuration",
-      "properties": {
-        "prh.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Control whether prh is enabled for text files or not."
-        },
-        "prh.configFile": {
-          "type": "string",
-          "default": "",
-          "description": "File path of primary prh yaml."
-        },
-        "prh.trace.server": {
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between VSCode and the prh language service."
+    "activationEvents": [
+        "onCommand:prh.quickFix",
+        "onCommand:prh.openDebugConsole",
+        "onLanguage:plaintext",
+        "onLanguage:markdown",
+        "onLanguage:review"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "prh.applyAllQuickFixes",
+                "title": "prh: Apply All Quick Fixes"
+            },
+            {
+                "command": "prh.openOutputChannel",
+                "title": "prh: Open Language Server Output"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Example configuration",
+            "properties": {
+                "prh.enable": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Control whether prh is enabled for text files or not."
+                },
+                "prh.configFile": {
+                    "type": "string",
+                    "default": "",
+                    "description": "File path of primary prh yaml."
+                },
+                "prh.trace.server": {
+                    "type": "string",
+                    "enum": [
+                        "off",
+                        "messages",
+                        "verbose"
+                    ],
+                    "default": "off",
+                    "description": "Traces the communication between VSCode and the prh language service."
+                }
+            }
         }
-      }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "dependencies": {
+        "prh-languageserver": "^0.0.3",
+        "vscode-languageclient": "^3.2.1"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.32",
+        "@types/node": "^6.0.40",
+        "mocha": "^2.3.3",
+        "typescript": "^2.3.2",
+        "vsce": "^1.20.0",
+        "vscode": "^1.1.0"
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test"
-  },
-  "dependencies": {
-    "prh-languageserver": "^0.0.3",
-    "vscode-languageclient": "^3.2.1"
-  },
-  "devDependencies": {
-    "@types/mocha": "^2.2.32",
-    "@types/node": "^6.0.40",
-    "mocha": "^2.3.3",
-    "typescript": "^2.3.2",
-    "vsce": "^1.20.0",
-    "vscode": "^1.1.0"
-  }
 }
