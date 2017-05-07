@@ -1,9 +1,22 @@
 {
   "name": "vscode-prh-extention",
   "displayName": "vscode-prh-extention",
-  "description": "",
+  "description": "work with [prh-languageserver](https://github.com/prh/prh-languageserver).",
   "version": "0.0.1",
   "publisher": "vvakame",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prh/vscode-prh-extention.git"
+  },
+  "author": "vvakame",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prh/vscode-prh-extention/issues"
+  },
+  "homepage": "https://github.com/prh/vscode-prh-extention#readme",
   "engines": {
     "node": "^4.0.0",
     "vscode": "^1.11.0"
@@ -68,10 +81,11 @@
     "vscode-languageclient": "^3.2.1"
   },
   "devDependencies": {
-    "typescript": "^2.3.2",
-    "vscode": "^1.1.0",
-    "mocha": "^2.3.3",
+    "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.40",
-    "@types/mocha": "^2.2.32"
+    "mocha": "^2.3.3",
+    "typescript": "^2.3.2",
+    "vsce": "^1.20.0",
+    "vscode": "^1.1.0"
   }
 }
