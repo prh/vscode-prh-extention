@@ -1,0 +1,11 @@
+version: 1
+
+imports:
+  - ./prh-rules/media/techbooster.yml
+
+rules:
+  - expected: テスト
+    pattern:  test
+  - expected: カスタマイズ
+    pattern:  customize
+    prh:      メッセージカスタマイズのテストですよ。

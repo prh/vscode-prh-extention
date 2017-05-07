@@ -1,0 +1,5 @@
+version: 1
+
+rules:
+  - expected: 別ファイル名のテスト
+    pattern:  test
