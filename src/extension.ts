@@ -1,7 +1,11 @@
 import * as path from "path";
 
 import * as vscode from "vscode";
-import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, TransportKind, ExecuteCommandRequest, ExecuteCommandParams } from "vscode-languageclient";
+import {
+    LanguageClient, LanguageClientOptions,
+    SettingMonitor, ServerOptions,
+    TransportKind, ExecuteCommandRequest, ExecuteCommandParams
+} from "vscode-languageclient";
 
 export class Handler {
     context?: vscode.ExtensionContext;
