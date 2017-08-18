@@ -43,6 +43,7 @@ export class Handler {
             return;
         }
         let serverModule = this.context.asAbsolutePath(path.join("./node_modules/prh-languageserver", "lib/index.js"));
+        // let serverModule = this.context.asAbsolutePath(path.join("../prh-languageserver", "lib/index.js"));
         // let debugOptions = { execArgv: ["--nolazy", "--debug=6009", "--inspect", "--debug-brk"] };
         let debugOptions = { execArgv: ["--nolazy", "--debug=6009"] };
         let serverOptions: ServerOptions = {
@@ -53,11 +54,12 @@ export class Handler {
             documentSelector: ["plaintext", "markdown", "review"],
             synchronize: {
                 configurationSection: "prh",
-                fileEvents: vscode.workspace.createFileSystemWatcher("**/prh.yml"),
+                // prh.ymlから別のファイルをimportsしてる場合に変更が検出できないと辛いので広めに取る
+                fileEvents: vscode.workspace.createFileSystemWatcher("**/*.yml"),
             },
         };
 
-        this.client = new LanguageClient("prh", "prh Language Server", serverOptions, clientOptions);
+        this.client = new LanguageClient("prh", "prh", serverOptions, clientOptions);
         let disposable = this.client.start();
         this.context.subscriptions.push(disposable);
     }
