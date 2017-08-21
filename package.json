@@ -52,13 +52,16 @@
                     "default": true,
                     "description": "Control whether prh is enabled for text files or not."
                 },
+                "prh.prhlsPath": {
+                    "type": "string",
+                    "description": "Path to project specific prhls command."
+                },
                 "prh.configFiles": {
                     "type": "array",
                     "description": "File paths of primary prh yaml.",
                     "items": {
                         "type": "string"
-                    },
-                    "default": []
+                    }
                 },
                 "prh.trace.server": {
                     "type": "string",
@@ -80,7 +83,7 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "dependencies": {
-        "prh-languageserver": "^0.3.0",
+        "prh-languageserver": "^0.4.0",
         "vscode-languageclient": "^3.3.0"
     },
     "devDependencies": {

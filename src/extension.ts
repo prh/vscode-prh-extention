@@ -3,32 +3,33 @@ import * as path from "path";
 import * as vscode from "vscode";
 import {
     LanguageClient, LanguageClientOptions,
-    SettingMonitor, ServerOptions,
+    ServerOptions,
     TransportKind, ExecuteCommandRequest, ExecuteCommandParams
 } from "vscode-languageclient";
 
 export class Handler {
-    context?: vscode.ExtensionContext;
+    context: vscode.ExtensionContext;
     statusBarItem?: vscode.StatusBarItem;
     client?: LanguageClient;
+    clientDisposable?: vscode.Disposable;
 
-    activate(context: vscode.ExtensionContext) {
+    async activate(context: vscode.ExtensionContext) {
         this.context = context;
-        this.setupStatusBarItem();
-        this.setupLanguageClient();
 
         {
-            const disposable = new SettingMonitor(this.client!, "prh.enable").start();
-            context.subscriptions.push(disposable);
+            const disposable = vscode.commands.registerCommand("prh.applyAllQuickFixes", this.commandApplyAllQuickFixes.bind(this));
+            this.context.subscriptions.push(disposable);
         }
         {
-            let disposable = vscode.commands.registerCommand("prh.applyAllQuickFixes", this.commandApplyAllQuickFixes.bind(this));
-            context.subscriptions.push(disposable);
+            const disposable = vscode.commands.registerCommand("prh.openOutputChannel", this.commandOutputChannel.bind(this));
+            this.context.subscriptions.push(disposable);
         }
-        {
-            let disposable = vscode.commands.registerCommand("prh.openOutputChannel", this.commandOutputChannel.bind(this));
-            context.subscriptions.push(disposable);
-        }
+        vscode.workspace.onDidChangeConfiguration(async () => {
+            await this.setupLanguageClient();
+        });
+
+        this.setupStatusBarItem();
+        await this.setupLanguageClient();
     }
 
     setupStatusBarItem() {
@@ -36,21 +37,49 @@ export class Handler {
         this.statusBarItem.text = "prh";
         this.statusBarItem.command = "prh.applyAllQuickFixes";
         this.statusBarItem.show();
+        this.context.subscriptions.push(this.statusBarItem);
     }
 
-    setupLanguageClient() {
+    async setupLanguageClient() {
         if (!this.context) {
             return;
         }
-        let serverModule = this.context.asAbsolutePath(path.join("./node_modules/prh-languageserver", "lib/index.js"));
-        // let serverModule = this.context.asAbsolutePath(path.join("../prh-languageserver", "lib/index.js"));
-        // let debugOptions = { execArgv: ["--nolazy", "--debug=6009", "--inspect", "--debug-brk"] };
-        let debugOptions = { execArgv: ["--nolazy", "--debug=6009"] };
-        let serverOptions: ServerOptions = {
-            run: { module: serverModule, transport: TransportKind.ipc },
-            debug: { module: serverModule, transport: TransportKind.ipc, options: debugOptions },
+
+        if (this.clientDisposable) {
+            this.clientDisposable.dispose();
+            this.client = void 0;
+            this.clientDisposable = void 0;
+        }
+
+
+        const disposables: vscode.Disposable[] = [];
+
+        const conf = vscode.workspace.getConfiguration("prh");
+
+        { // vscode-languageclient.SettingMonitor を使うとclientが二重管理状態になって辛いので自力でやる
+            let enable = conf.get("enable") as boolean | null;
+            if (enable == null) {
+                enable = true;
+            }
+            if (!enable) {
+                return;
+            }
+        }
+
+        let prhlsPath = conf.get("prhlsPath") as string | null;
+        if (prhlsPath) {
+            prhlsPath = path.resolve(vscode.workspace.rootPath, prhlsPath);
+        } else {
+            prhlsPath = this.context.asAbsolutePath("node_modules/.bin/prhls");
+        }
+
+        const debugOptions = { execArgv: ["--nolazy", "--debug=6009"] };
+        // const debugOptions = { execArgv: ["--nolazy", "--debug=6009", "--inspect", "--debug-brk"] };
+        const serverOptions: ServerOptions = {
+            run: { module: prhlsPath, transport: TransportKind.ipc },
+            debug: { module: prhlsPath, transport: TransportKind.ipc, options: debugOptions },
         };
-        let clientOptions: LanguageClientOptions = {
+        const clientOptions: LanguageClientOptions = {
             documentSelector: ["plaintext", "markdown", "review"],
             synchronize: {
                 configurationSection: "prh",
@@ -60,8 +89,10 @@ export class Handler {
         };
 
         this.client = new LanguageClient("prh", "prh", serverOptions, clientOptions);
-        let disposable = this.client.start();
-        this.context.subscriptions.push(disposable);
+        const disposable = this.client.start();
+        disposables.push(disposable);
+
+        this.clientDisposable = vscode.Disposable.from(...disposables);
     }
 
     commandApplyAllQuickFixes() {
@@ -95,6 +126,11 @@ export class Handler {
     }
 
     deactivate() {
+        if (this.clientDisposable) {
+            this.clientDisposable.dispose();
+            this.client = void 0;
+            this.clientDisposable = void 0;
+        }
     }
 }
 
