@@ -2,7 +2,7 @@
     "name": "vscode-prh-extention",
     "displayName": "prh - ProofReadingHelper",
     "description": "help your proofreading by prh",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "vvakame",
     "directories": {
         "test": "test"
