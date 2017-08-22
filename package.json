@@ -2,7 +2,7 @@
     "name": "vscode-prh-extention",
     "displayName": "prh - ProofReadingHelper",
     "description": "work with [prh-languageserver](https://github.com/prh/prh-languageserver).",
-    "version": "0.6.0",
+    "version": "1.0.0",
     "publisher": "vvakame",
     "directories": {
         "test": "test"
