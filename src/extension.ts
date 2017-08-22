@@ -70,7 +70,8 @@ export class Handler {
         if (prhlsPath) {
             prhlsPath = path.resolve(vscode.workspace.rootPath, prhlsPath);
         } else {
-            prhlsPath = this.context.asAbsolutePath("node_modules/.bin/prhls");
+            // NOTE インストールされた拡張は node_modules/.bin を持たない…
+            prhlsPath = this.context.asAbsolutePath("node_modules/prh-languageserver/bin/prhls");
         }
 
         const debugOptions = { execArgv: ["--nolazy", "--debug=6009"] };
