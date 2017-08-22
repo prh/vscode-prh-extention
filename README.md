@@ -7,7 +7,7 @@
 
 ## 導入方法
 
-VSCodeがインストールされていれば、[このリンク](vscode:extension/vvakame.vscode-prh-extention)で導入を開始することができます。
+VSCodeがインストールされていれば、[Marketplace](https://marketplace.visualstudio.com/items?itemName=vvakame.vscode-prh-extention)のInstallボタンから導入を開始することができます。
 
 もしくは、VSCodeを開いて `Cmd+P`（`Ctrl+P`）でコマンドパレットを開きます。
 そこで `ext install prh` を実行すると本拡張が検索できます。
