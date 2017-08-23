@@ -1810,8 +1810,8 @@ prh-languageserver@^1.0.0:
     vscode-uri "1.0.1"
 
 prh@^5.3.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/prh/-/prh-5.4.0.tgz#2be8789ad8449c73e94e5a6057ee7c85b5bd1788"
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/prh/-/prh-5.4.2.tgz#1cfe5dcf28d4f6b217133e368bc409d63c26eb65"
   dependencies:
     commandpost "^1.2.1"
     diff "^3.3.0"
