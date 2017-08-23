@@ -1,3 +1,13 @@
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/prh/vscode-prh-extention/compare/v1.0.2...v1.0.3) (2017-08-23)
+
+
+### Features
+
+* **prh-ext:** prhとprh-languageserverをバグ修正版に挿し替え ([9a30beb](https://github.com/prh/vscode-prh-extention/commit/9a30beb))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/prh/vscode-prh-extention/compare/v1.0.1...v1.0.2) (2017-08-23)
 
