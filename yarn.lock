@@ -1153,8 +1153,8 @@ is-glob@^3.1.0:
     is-extglob "^2.1.0"
 
 is-my-json-valid@^2.12.4:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.16.0.tgz#f079dd9bfdae65ee2038aae8acbc86ab109e3693"
+  version "2.16.1"
+  resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.16.1.tgz#5a846777e2c2620d1e69104e5d3a03b1f6088f11"
   dependencies:
     generate-function "^2.0.0"
     generate-object-property "^1.1.0"
@@ -1801,17 +1801,17 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prh-languageserver@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/prh-languageserver/-/prh-languageserver-1.0.0.tgz#0159141b36efe348496070fcbc04bb8e2925f377"
+prh-languageserver@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/prh-languageserver/-/prh-languageserver-1.0.1.tgz#4a4a2f8f07e1936c06c92c637e8e9e22cdc4f1ad"
   dependencies:
     prh "^5.3.0"
     vscode-languageserver "3.2.2"
     vscode-uri "1.0.1"
 
 prh@^5.3.0:
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/prh/-/prh-5.4.2.tgz#1cfe5dcf28d4f6b217133e368bc409d63c26eb65"
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/prh/-/prh-5.4.3.tgz#d3864a6de2f35c6603e33c700106dce01c22876d"
   dependencies:
     commandpost "^1.2.1"
     diff "^3.3.0"
