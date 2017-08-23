@@ -1,3 +1,14 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/prh/vscode-prh-extention/compare/v1.0.1...v1.0.2) (2017-08-23)
+
+
+### Features
+
+* **prh-ext:** CHANGELOG.mdを生成するようにした ([b9c2b05](https://github.com/prh/vscode-prh-extention/commit/b9c2b05))
+* **prh-ext:** prh-languageserverのv1系をリリースしたのでそちらを利用するように修正 ([24ca073](https://github.com/prh/vscode-prh-extention/commit/24ca073))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/prh/vscode-prh-extention/compare/v1.0.0...v1.0.1) (2017-08-22)
 
