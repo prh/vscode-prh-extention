@@ -67,8 +67,9 @@ export class Handler {
         }
 
         let prhlsPath = conf.get("prhlsPath") as string | null;
-        if (prhlsPath) {
-            prhlsPath = path.resolve(vscode.workspace.rootPath, prhlsPath);
+        if (prhlsPath && vscode.workspace.workspaceFolders) {
+            const rootPath = vscode.workspace.workspaceFolders[0];
+            prhlsPath = path.resolve(rootPath.uri.fsPath, prhlsPath);
         } else {
             // NOTE インストールされた拡張は node_modules/.bin を持たない…
             prhlsPath = this.context.asAbsolutePath("node_modules/prh-languageserver/bin/prhls");
