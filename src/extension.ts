@@ -75,7 +75,7 @@ export class Handler {
             prhlsPath = this.context.asAbsolutePath("node_modules/prh-languageserver/bin/prhls");
         }
 
-        const debugOptions = { execArgv: ["--nolazy", "--debug=6009"] };
+        const debugOptions = { execArgv: ["--nolazy", "--inspect=6009"] };
         // const debugOptions = { execArgv: ["--nolazy", "--debug=6009", "--inspect", "--debug-brk"] };
         const serverOptions: ServerOptions = {
             run: { module: prhlsPath, transport: TransportKind.ipc },
@@ -138,27 +138,30 @@ export class Handler {
         this.client.outputChannel.show();
     }
 
-    deactivate() {
+    deactivate(): Thenable<void> | undefined {
         if (this.clientDisposable) {
             this.clientDisposable.dispose();
-            this.client = void 0;
             this.clientDisposable = void 0;
         }
+        if (!this.client) {
+            return undefined;
+        }
+        return this.client.stop();
     }
 }
 
 let handler: Handler | null = null;
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext): void {
     if (!handler) {
         handler = new Handler();
     }
     handler.activate(context);
 }
 
-export function deactivate() {
+export function deactivate(): Thenable<void> | undefined {
     if (handler) {
-        handler.deactivate();
-        handler = null;
+        return handler.deactivate();
     }
+    return undefined;
 }
