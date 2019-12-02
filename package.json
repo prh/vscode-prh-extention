@@ -19,7 +19,7 @@
     "homepage": "https://github.com/prh/vscode-prh-extention#readme",
     "engines": {
         "node": ">= 8.9.3",
-        "vscode": "1.40.1"
+        "vscode": "^1.40.0"
     },
     "categories": [
         "Other"
