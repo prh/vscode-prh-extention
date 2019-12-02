@@ -82,7 +82,18 @@ export class Handler {
             debug: { module: prhlsPath, transport: TransportKind.ipc, options: debugOptions },
         };
         const clientOptions: LanguageClientOptions = {
-            documentSelector: ["plaintext", "markdown", "review"],
+            documentSelector: [
+                {
+                    scheme: "file",
+                    language: "plaintext"
+                }, {
+                    scheme: "file",
+                    language: "markdown"
+                }, {
+                    scheme: "file",
+                    language: "review"
+                }
+            ],
             synchronize: {
                 configurationSection: "prh",
                 // prh.ymlから別のファイルをimportsしてる場合に変更が検出できないと辛いので広めに取る
