@@ -2,3 +2,5 @@ out
 node_modules
 
 .vscode-test/
+yarn-error.log
+.node-version
